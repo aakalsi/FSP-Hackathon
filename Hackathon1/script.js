@@ -164,22 +164,6 @@ function showIcon(numArray){
     console.log('showicon',numArray);
 }
 
-// function clickIsValid(round,quad,numArray){
-//         console.log(round,quad,numArray);
-//     for (let i=0;i<parseInt(round);i++ ){
-//         if (parseInt(quad) === parseInt(numArray[i])){
-//             // show tick mark if possible
-//             console.log(numArray[i],quad,'click is valid');
-//             // continue jump;
-//         } else {
-//         //     showCross
-//         //     endGame();
-//         console.log('end game -- add breaking');
-//         }
-//     }
-//     return;
-// }
-
 // start the game
 
 function startGame(){
@@ -199,12 +183,11 @@ function startGame(){
                     //     endGame();
                     console.log('end game -- add breaking');
                     }
-                    if (i===quadrants.length-1){
-                        setTimeout(function (){    
-                            showIcon(numArray);
-                        }, 1000);
-                    }
+                    round++;
                 }
+                    setTimeout(function (){    
+                        showIcon(numArray);
+                    }, 1000);
                 scoreInc();
             })
         }
