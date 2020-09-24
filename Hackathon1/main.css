@@ -1,0 +1,75 @@
+*, *::before,*::after{
+    box-sizing: border-box;
+    font-family: sans-serif;
+    font-weight: normal;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to right, #00AAFF,#00FF6C);
+}
+
+.game-grid{
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    min-height: 100vh;
+    grid-template-columns: repeat(4,100px);
+    grid-template-rows: minmax(100px,auto) 200px minmax(200px,auto) repeat(2, 100px);
+}
+
+.game-grid > button{
+    cursor: pointer;
+    font-size: 2rem;
+    border: 1px solid white;
+    outline: none;
+    background-color: rgba(255, 255, 255, .75);
+}
+
+.game-grid > button:hover{
+    background-color: rgba(255, 255, 255, .90);
+}
+
+.output{
+    grid-column: 1 / -1;
+    background-color: rgba(0,0,0,.75);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    padding: 10px;
+    color: rgba(255, 255, 255, .75);
+    font-size: 1.5rem;
+    margin-bottom: 40px;
+}
+
+.span4{
+    grid-column: span 2;
+}
+
+#play, #reset{
+    margin-top: 40px;
+    border-radius: 15px;
+}
+
+.quad1{
+    border-top-left-radius: 100%;
+}
+.quad2{
+    border-top-right-radius: 100%;
+}
+.quad3{
+    border-bottom-left-radius: 100%;
+}
+.quad4{
+    border-bottom-right-radius: 100%;
+}
+
+#play{
+    grid-column: 1;
+}
+
+#reset{
+    grid-column: 4;
+}
