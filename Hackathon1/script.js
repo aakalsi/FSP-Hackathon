@@ -160,21 +160,25 @@ function showIcon(numArray){
     document.getElementById(randomNumber).style.backgroundColor='#00FFFF';
     setInterval(function (){    
             document.getElementById(randomNumber).removeAttribute('style');
-            }, 1000);
+            }, 3000);
     console.log('showicon',numArray);
 }
 
-function clickIsValid(numArray,quad,round){
-        if (+quad === +numArray[round]){
-            // show tick mark if possible
-            console.log(numArray,quad,round,'click is valid');
-            return;
-        } else {
-        //     showCross
-        //     endGame();
-        console.log('end game -- add breaking');
-        }
-}
+// function clickIsValid(round,quad,numArray){
+//         console.log(round,quad,numArray);
+//     for (let i=0;i<parseInt(round);i++ ){
+//         if (parseInt(quad) === parseInt(numArray[i])){
+//             // show tick mark if possible
+//             console.log(numArray[i],quad,'click is valid');
+//             // continue jump;
+//         } else {
+//         //     showCross
+//         //     endGame();
+//         console.log('end game -- add breaking');
+//         }
+//     }
+//     return;
+// }
 
 // start the game
 
@@ -187,14 +191,20 @@ function startGame(){
             quadrants[i].addEventListener('click',function(){
                quad=this.id;
                while(round<numArray.length){
-                    clickIsValid(numArray,quad,round);
-                    console.log('return'+[round],numArray.length);
-                    round++;
-                    console.log(round);
+                    if (parseInt(quad) === parseInt(numArray[round])){
+                        // show tick mark if possible
+                        console.log(numArray[round],quad,'click is valid');
+                    } else {
+                    //     showCross
+                    //     endGame();
+                    console.log('end game -- add breaking');
+                    }
+                    if (i===quadrants.length-1){
+                        setTimeout(function (){    
+                            showIcon(numArray);
+                        }, 1000);
+                    }
                 }
-                    setTimeout(function (){    
-                        showIcon(numArray);
-                    }, 1000);
                 scoreInc();
             })
         }
