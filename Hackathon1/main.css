@@ -7,7 +7,7 @@
 body{
     margin: 0;
     padding: 0;
-    background: linear-gradient(to right, #00AAFF,#00FF6C);
+    background: linear-gradient(to right, rgb(191, 94, 240) ,rgb(240, 37, 64));
 }
 
 .game-grid{
@@ -19,12 +19,13 @@ body{
     grid-template-rows: minmax(100px,auto) 200px minmax(200px,auto) repeat(2, 100px);
 }
 
-.game-grid > button{
+.game-grid > button
+{
     cursor: pointer;
-    font-size: 2rem;
+    font-size: 1.5rem;
     border: 1px solid white;
     outline: none;
-    background-color: rgba(255, 255, 255, .75);
+    background-color:  rgba(255, 255, 255, .75);
 }
 
 .game-grid > button:hover{
@@ -51,6 +52,7 @@ body{
 #play, #reset{
     margin-top: 40px;
     border-radius: 15px;
+    padding: 10px;
 }
 
 .quad1{
@@ -58,9 +60,11 @@ body{
 }
 .quad2{
     border-top-right-radius: 100%;
+
 }
 .quad3{
     border-bottom-left-radius: 100%;
+
 }
 .quad4{
     border-bottom-right-radius: 100%;

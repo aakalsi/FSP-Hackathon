@@ -80,8 +80,131 @@ resetGame()
 
 */
 
+
 let gameGrid=document.createElement('div');
-gameGrid.className="game-grid";
+gameGrid.className='game-grid';
 document.body.append(gameGrid);
 
 let output=document.createElement('div');
+output.className="output";
+output.id='display';
+output.innerText='Score Record';
+gameGrid.append(output);
+
+let quad1=document.createElement('button');
+quad1.className='span4 quad1';
+quad1.id='1';
+quad1.innerText='1';
+gameGrid.append(quad1);
+
+let quad2=document.createElement('button');
+quad2.className='span4 quad2';
+quad2.id='2';
+quad2.innerText='2';
+gameGrid.append(quad2);
+
+let quad3=document.createElement('button');
+quad3.className='span4 quad3';
+quad3.id='3';
+quad3.innerText='3';
+gameGrid.append(quad3);
+
+let quad4=document.createElement('button');
+quad4.className='span4 quad4';
+quad4.id='4';
+quad4.innerText='4';
+gameGrid.append(quad4);
+
+let play=document.createElement('button');
+play.id='play';
+play.innerText='Play!'
+gameGrid.append(play);
+
+let reset=document.createElement('button');
+reset.id='reset';
+reset.innerText='Reset!'
+gameGrid.append(reset);
+
+//function to increase the score [working]
+function scoreInc(){
+    resetGame();
+    let score=document.getElementById('display');
+    score.innerText = parseInt(score.innerText)+10;
+}
+
+//function to reset the game - score and showarray[working but pending]
+function resetGame(){
+    document.getElementById('display').innerText=0;
+    numArray=[];
+    // console.log(numArray);
+}
+
+//function to end the game
+function endGame(){
+        // To Do: show game end message in pop up
+        // To Do: show total score in pop up
+}
+
+// random number generator [working]
+function getRandomNumber() {
+    let min=1,max=4;
+    let random = min + Math.random() * (max + 1 - min);
+    return `${Math.floor(random)}`;
+  }
+//  alert(getRandomNumber(1,4));
+
+//show the color for 1 second
+function showIcon(numArray){
+    let randomNumber=getRandomNumber();
+    numArray.push(randomNumber);
+    document.getElementById(randomNumber).style.backgroundColor='#00FFFF';
+    setInterval(function (){    
+            document.getElementById(randomNumber).removeAttribute('style');
+            }, 1000);
+    console.log('showicon',numArray);
+}
+
+function clickIsValid(numArray,quad,round){
+        if (+quad === +numArray[round]){
+            // show tick mark if possible
+            console.log(numArray,quad,round,'click is valid');
+            return;
+        } else {
+        //     showCross
+        //     endGame();
+        console.log('end game -- add breaking');
+        }
+}
+
+// start the game
+
+function startGame(){
+        let numArray=[];
+        showIcon(numArray);
+        let quad,round=0;
+        let quadrants=document.getElementsByClassName('span4');
+        for(let i=0;i<quadrants.length;i++){
+            quadrants[i].addEventListener('click',function(){
+               quad=this.id;
+               while(round<numArray.length){
+                    clickIsValid(numArray,quad,round);
+                    console.log('return'+[round],numArray.length);
+                    round++;
+                    console.log(round);
+                }
+                    setTimeout(function (){    
+                        showIcon(numArray);
+                    }, 1000);
+                scoreInc();
+            })
+        }
+}
+
+// click on play button
+document.getElementById('play').addEventListener('click',()=>{
+    resetGame();
+    startGame();
+});
+
+// click on reset button
+document.getElementById('reset').addEventListener('click',resetGame);
